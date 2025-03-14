@@ -73,12 +73,7 @@ class PatientResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('type')
-                    ->options([
-                        'cat' => 'Cat',
-                        'dog' => 'Dog',
-                        'rabbit' => 'Rabbit',
-                        'bird' => 'Bird',
-                    ]),
+                    ->options(PatientType::class),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
