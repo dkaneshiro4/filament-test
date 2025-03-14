@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\PatientType;
 use App\Filament\Resources\PatientResource\Pages;
 use App\Filament\Resources\PatientResource\RelationManagers\TreatmentsRelationManager;
 use App\Models\Patient;
@@ -29,12 +30,9 @@ class PatientResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Select::make('type')
-                    ->options([
-                        'cat' => 'Cat',
-                        'dog' => 'Dog',
-                        'rabbit' => 'Rabbit',
-                        'bird' => 'Bird',
-                    ])->required(),
+                    ->enum(PatientType::class)
+                    ->options(PatientType::class)
+                    ->required(),
                 DatePicker::make('date_of_birth')
                     ->required()
                     ->maxDate(now()),
